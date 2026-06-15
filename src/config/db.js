@@ -17,17 +17,17 @@ const connectDB = async () => {
       socketTimeoutMS: 45000,
     });
 
-    logger.info(`✅ MongoDB connected: ${conn.connection.host}`);
+    logger.info(` MongoDB connected: ${conn.connection.host}`);
     retries = 0;
   } catch (error) {
     retries++;
-    logger.error(`❌ MongoDB connection failed (attempt ${retries}/${MAX_RETRIES}): ${error.message}`);
+    logger.error(`MongoDB connection failed (attempt ${retries}/${MAX_RETRIES}): ${error.message}`);
 
     if (retries < MAX_RETRIES) {
-      logger.info(`🔄 Retrying in ${RETRY_INTERVAL / 1000}s...`);
+      logger.info(`Retrying in ${RETRY_INTERVAL / 1000}s...`);
       setTimeout(connectDB, RETRY_INTERVAL);
     } else {
-      logger.error('💀 Max retries reached. Exiting.');
+      logger.error(' Max retries reached. Exiting.');
       process.exit(1);
     }
   }
@@ -35,7 +35,7 @@ const connectDB = async () => {
 
 // Connection event listeners
 mongoose.connection.on('disconnected', () => {
-  logger.warn('⚠️ MongoDB disconnected. Attempting to reconnect...');
+  logger.warn('MongoDB disconnected. Attempting to reconnect...');
   connectDB();
 });
 
@@ -44,7 +44,7 @@ mongoose.connection.on('error', (err) => {
 });
 
 mongoose.connection.on('reconnected', () => {
-  logger.info('✅ MongoDB reconnected');
+  logger.info(' MongoDB reconnected');
 });
 
 module.exports = connectDB;

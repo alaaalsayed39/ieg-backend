@@ -12,14 +12,11 @@ if (isConfigured) {
     api_secret: CLOUDINARY.API_SECRET,
     secure:     true,
   });
-  console.log(`✅ Cloudinary configured (cloud: ${CLOUDINARY.CLOUD_NAME})`);
+  console.log(`Cloudinary configured (cloud: ${CLOUDINARY.CLOUD_NAME})`);
 } else {
-  console.warn('⚠️  Cloudinary not configured — file uploads will fall back to local disk');
+  console.warn(' Cloudinary not configured — file uploads will fall back to local disk');
 }
 
-// Export both the configured client AND the readiness flag.
-// fileStorage.js uses cloudinary.isReady to avoid calling config() getter
-// (which behaves differently across cloudinary SDK v1/v2).
 cloudinary.isReady = isConfigured;
 
 module.exports = cloudinary;

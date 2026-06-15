@@ -1,17 +1,3 @@
-/**
- * IEG — Seed Data
- * ─────────────────────────────────────────────────────────────────────────────
- * Creates a complete demo dataset:
- *   • 1 Admin, 3 Exporters, 4 Buyers, 2 Shippers
- *   • 12 Products (various categories, real Egyptian exports)
- *   • 8 Orders (spanning full lifecycle)
- *   • 3 Shipments
- *   • Documents, Verifications, Transactions, Notifications
- *
- * Run:  node src/seed/index.js
- * Clear: node src/seed/index.js --clear
- */
-
 require('dotenv').config();
 const mongoose = require('mongoose');
 const bcrypt   = require('bcryptjs');
@@ -82,28 +68,28 @@ const seedUsers = async () => {
     },
     // Buyers
     {
-      fullName: 'James Wilson', email: 'buyer1@ieg.com',
+      fullName: 'sayed Wilson', email: 'buyer1@ieg.com',
       passwordHash: await hash('Buyer@1234'), role: 'buyer',
       country: 'US', companyName: 'Global Grocers Inc.',
       phone: '+12125551234', isVerified: true, isActive: true,
       walletBalance: 156000, subscription: 'business',
     },
     {
-      fullName: 'Lara Petrova', email: 'buyer2@ieg.com',
+      fullName: 'mo3az Petrova', email: 'buyer2@ieg.com',
       passwordHash: await hash('Buyer@1234'), role: 'buyer',
       country: 'GB', companyName: 'Elite Snacks Ltd.',
       phone: '+447911123456', isVerified: true, isActive: true,
       walletBalance: 89000, subscription: 'starter',
     },
     {
-      fullName: 'Carlos Rodriguez', email: 'buyer3@ieg.com',
+      fullName: 'ali Rodriguez', email: 'buyer3@ieg.com',
       passwordHash: await hash('Buyer@1234'), role: 'buyer',
       country: 'ES', companyName: 'Iberian Trade Hub',
       phone: '+34612345678', isVerified: true, isActive: true,
       walletBalance: 43500, subscription: 'starter',
     },
     {
-      fullName: 'Yuki Tanaka', email: 'buyer4@ieg.com',
+      fullName: 'yossef Tanaka', email: 'buyer4@ieg.com',
       passwordHash: await hash('Buyer@1234'), role: 'buyer',
       country: 'JP', companyName: 'Tokyo Imports Co.',
       phone: '+81312345678', isVerified: false, isActive: true,
@@ -111,14 +97,14 @@ const seedUsers = async () => {
     },
     // Shippers
     {
-      fullName: 'Skyline International Logistics', email: 'shipper1@ieg.com',
+      fullName: 'shaheen International Logistics', email: 'shipper1@ieg.com',
       passwordHash: await hash('Ship@1234'), role: 'shipper',
       country: 'EG', companyName: 'Skyline Logistics',
       phone: '+20223456789', isVerified: true, isActive: true,
       walletBalance: 0, subscription: 'business',
     },
     {
-      fullName: 'OceanLink Shipping', email: 'shipper2@ieg.com',
+      fullName: 'yahya Shipping', email: 'shipper2@ieg.com',
       passwordHash: await hash('Ship@1234'), role: 'shipper',
       country: 'AE', companyName: 'OceanLink Shipping',
       phone: '+97144567890', isVerified: true, isActive: true,
