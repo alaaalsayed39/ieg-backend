@@ -24,7 +24,7 @@ const refresh = async (req, res) => {
 
 const logout = async (req, res) => {
   await authService.logout(req.user._id);
-  res.clearCookie('refreshToken');
+  res.clearCookie('refreshToken', REFRESH_COOKIE_OPTIONS);
   ApiResponse.success(res, null, 'Logged out successfully');
 };
 
