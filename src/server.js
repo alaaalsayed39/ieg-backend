@@ -8,13 +8,7 @@ const socketService = require('./sockets/socket');
 
 const PORT = process.env.PORT || 5000;
 
-//cors allow vercel origin
-// app.use(cors({origin: '*'}));
 
-app.use((req, res, next) => {
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  next();
-});
 
 const startServer = async () => {
   try {

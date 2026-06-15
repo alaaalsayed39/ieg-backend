@@ -3,8 +3,7 @@ require('dotenv').config();
 
 const allowedOrigins = [
   'http://localhost:5173',
-  'https://ieg-frontend.vercel.app',
-  'https://ieg-frontend-5iwhhlo8t-alaaalsayed159-7016s-projects.vercel.app'
+  'https://ieg-frontend.vercel.app'
 ];
 
 const express  = require('express');
@@ -51,9 +50,14 @@ app.use(helmet({
   crossOriginResourcePolicy: { policy: 'cross-origin' },
 }));
 app.use(cors({
-  // origin: process.env.CLIENT_URL || 'http://localhost:5173',
   origin: function (origin, callback) {
-    if (!origin || allowedOrigins.indexOf(origin) !== -1) {
+    if (!origin) return callback(null, true);
+
+    const allowed = allowedOrigins.includes(origin) ||
+      /^https:\/\/ieg-frontend(-[a-z0-9-]+)?\.vercel\.app$/.test(origin) ||
+      /^https:\/\/ieg-frontend-[a-z0-9-]+-alaaalsayed159-7016s-projects\.vercel\.app$/.test(origin);
+
+    if (allowed) {
       callback(null, true);
     } else {
       callback(new Error('Not allowed by CORS'));
