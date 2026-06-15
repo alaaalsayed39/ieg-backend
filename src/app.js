@@ -3,7 +3,8 @@ require('dotenv').config();
 
 const allowedOrigins = [
   'http://localhost:5173',
-  'https://ieg-frontend.vercel.app'
+  'https://ieg-frontend.vercel.app',
+  'https://ieg-frontend-5iwhhlo8t-alaaalsayed159-7016s-projects.vercel.app'
 ];
 
 const express  = require('express');

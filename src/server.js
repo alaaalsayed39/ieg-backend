@@ -4,12 +4,13 @@ const app = require('./app');
 const connectDB = require('./config/database');
 const logger = require('./utils/logger');
 const socketService = require('./sockets/socket');
-const cors = require('cors');
+// const cors = require('cors');
 
 const PORT = process.env.PORT || 5000;
 
 //cors allow vercel origin
-app.use(cors({origin: '*'}));
+// app.use(cors({origin: '*'}));
+
 app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
   next();
