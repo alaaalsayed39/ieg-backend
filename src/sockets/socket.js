@@ -1,6 +1,7 @@
 'use strict';
 
 const socketIo = require('socket.io');
+const { CORS } = require('../config/env');
 const { verifyAccessToken } = require('../config/jwt');
 const User = require('../modules/users/user.model');
 const { Conversation, Message } = require('../modules/messages/message.model');
@@ -14,7 +15,7 @@ const onlineUsers = {}; // Map of userId -> { socketId, status }
 const init = (server) => {
   io = socketIo(server, {
     cors: {
-      origin: process.env.CLIENT_URL || 'http://localhost:5173',
+      origin: CORS.checkOrigin,
       credentials: true,
       methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
       allowedHeaders: ['Content-Type', 'Authorization'],

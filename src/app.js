@@ -1,10 +1,7 @@
 require('express-async-errors');
 require('dotenv').config();
 
-const allowedOrigins = [
-  'http://localhost:5173',
-  'https://ieg-frontend.vercel.app'
-];
+const { CORS } = require('./config/env');
 
 const express  = require('express');
 const path     = require('path');
@@ -50,19 +47,7 @@ app.use(helmet({
   crossOriginResourcePolicy: { policy: 'cross-origin' },
 }));
 app.use(cors({
-  origin: function (origin, callback) {
-    if (!origin) return callback(null, true);
-
-    const allowed = allowedOrigins.includes(origin) ||
-      /^https:\/\/ieg-frontend(-[a-z0-9-]+)?\.vercel\.app$/.test(origin) ||
-      /^https:\/\/ieg-frontend-[a-z0-9-]+-alaaalsayed159-7016s-projects\.vercel\.app$/.test(origin);
-
-    if (allowed) {
-      callback(null, true);
-    } else {
-      callback(new Error('Not allowed by CORS'));
-    }
-  },
+  origin: CORS.checkOrigin,
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization'],
